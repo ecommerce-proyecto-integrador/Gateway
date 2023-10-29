@@ -24,7 +24,7 @@ export class UsersService {
         const resp = await firstValueFrom(this.client.send('new_user_created', user))
         return resp; 
       } catch (error) {
-        console.error('Error al emitir el evento:', error);
+        console.error('Error al emitir el evento1:', error);
         return false; 
       }
     }
