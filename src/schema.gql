@@ -1,0 +1,77 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Users {
+  id: Int!
+  name: String!
+  clave: String!
+  correo: String!
+}
+
+type Query {
+  user: [Users!]!
+  showInfo: String!
+  showInfoEquipo: String!
+}
+
+type Mutation {
+  createUsers(userInput: CreateUserInput!): Boolean!
+  loginUsersTest(loginInput: LoginUserInput!): String!
+  resetPassword(resetPasswordInput: UpdatePasswordInput!): Boolean!
+  recoveryPass(recoveryPassInput: RecoveryPassInput!): String!
+  confirmC(confirmCodeInput: ConfirmCodeInput!): Boolean!
+  resetPassword2(resetPasswordInput: UpdatePasswordInput2!): Boolean!
+  createEquipo(equipoInput: CreateEquipoInput!): Boolean!
+  updateEquipoName(updateNameInput: UpdateEquipoNameInput!): Boolean!
+  deleteEquipo(deleteEquipoInput: DeleteEquipoInput!): Boolean!
+  agregarIntegrante(agregarIntegrante: AgregarIntegrante!): Boolean!
+}
+
+input CreateUserInput {
+  name: String!
+  clave: String!
+  correo: String!
+}
+
+input LoginUserInput {
+  clave: String!
+  correo: String!
+}
+
+input UpdatePasswordInput {
+  claveAntigua: String!
+  claveNueva: String!
+}
+
+input RecoveryPassInput {
+  correo: String!
+}
+
+input ConfirmCodeInput {
+  correo: String!
+  code: String!
+}
+
+input UpdatePasswordInput2 {
+  correo: String!
+  claveNueva: String!
+}
+
+input CreateEquipoInput {
+  name: String!
+}
+
+input UpdateEquipoNameInput {
+  antiguoNombreEquipo: String!
+  nuevoNombreEquipo: String!
+}
+
+input DeleteEquipoInput {
+  name: String!
+}
+
+input AgregarIntegrante {
+  nombreEquipo: String!
+  correoIntegrante: String!
+}
