@@ -8,10 +8,7 @@ import { LoginUserInput } from './dto/login-user.input';
 import { firstValueFrom } from 'rxjs';
 import { UpdatePasswordInput } from './dto/update-userpass.input';
 import { JwtService } from '@nestjs/jwt';
-import { UpdateEquipoNameInput } from './dto/update-equipoName.input';
-import { DeleteEquipoInput } from './dto/delete-equipo.input';
 import { UpdatePasswordInput2 } from './dto/update2-userpass.input';
-import { AgregarIntegrante } from './dto/agregar-integrante.input';
 
 
 @Injectable()
@@ -95,64 +92,10 @@ export class UsersService {
       
       return token;
     }
-    ////////////////////////////////////////////////////// USUARIOS  ///////////////////////////////////////////////////////
-  
     
-    /////////////////////////////////////////////////////// EQUIPOS  ///////////////////////////////////////////////////////
 
     
-    async createEquipo(nombre: string, correo: string): Promise<boolean> {
-      
-      const token = await firstValueFrom(this.client.send('new_equipo_created',{nombre,correo}))
-      
-      console.log(token)
-      return token;
-    }
-
-    async showInfoEquipo(correo: string): Promise<string> {
-      
-      
-      const equipoInfo = await firstValueFrom(this.client.send('show_info_equipo',{correo}))
-      
-      
-      return equipoInfo;
-    }
-
-    async updateEquipoName(updateEquipoNameInput: UpdateEquipoNameInput, correo: string): Promise<boolean> {
-      const oldName = updateEquipoNameInput.antiguoNombreEquipo;
-      const newName = updateEquipoNameInput.nuevoNombreEquipo;
     
-     
-      
-      
-      const token = await firstValueFrom(this.client.send('update_name_equipo',{oldName,newName,correo}))
-      
-      return token;
-    }
-    async deleteEquipo(deleteEquipoInput: DeleteEquipoInput, correo: string): Promise<boolean> {
-      const name = deleteEquipoInput.name;
-      
-     
-      
-      
-      const token = await firstValueFrom(this.client.send('delete_name_equipo',{name,correo}))
-      
-      return token;
-    }
-    async agregarIntegrante(agregarIntegranteInput: AgregarIntegrante, correo: string): Promise<boolean> {
-      const nombreEquipo = agregarIntegranteInput.nombreEquipo
-      const correoIntegrante = agregarIntegranteInput.correoIntegrante;
-       
-      
-     
-      
-      
-      const token = await firstValueFrom(this.client.send('agregar_integrante',{nombreEquipo,correoIntegrante,correo}))
-      
-      return token;
-    }
-    
-    /////////////////////////////////////////////////////// Equipos  ///////////////////////////////////////////////////////
     
 
 

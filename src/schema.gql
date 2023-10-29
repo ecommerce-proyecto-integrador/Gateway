@@ -12,7 +12,6 @@ type Users {
 type Query {
   user: [Users!]!
   showInfo: String!
-  showInfoEquipo: String!
 }
 
 type Mutation {
@@ -22,10 +21,6 @@ type Mutation {
   recoveryPass(recoveryPassInput: RecoveryPassInput!): String!
   confirmC(confirmCodeInput: ConfirmCodeInput!): Boolean!
   resetPassword2(resetPasswordInput: UpdatePasswordInput2!): Boolean!
-  createEquipo(equipoInput: CreateEquipoInput!): Boolean!
-  updateEquipoName(updateNameInput: UpdateEquipoNameInput!): Boolean!
-  deleteEquipo(deleteEquipoInput: DeleteEquipoInput!): Boolean!
-  agregarIntegrante(agregarIntegrante: AgregarIntegrante!): Boolean!
 }
 
 input CreateUserInput {
@@ -56,22 +51,4 @@ input ConfirmCodeInput {
 input UpdatePasswordInput2 {
   correo: String!
   claveNueva: String!
-}
-
-input CreateEquipoInput {
-  name: String!
-}
-
-input UpdateEquipoNameInput {
-  antiguoNombreEquipo: String!
-  nuevoNombreEquipo: String!
-}
-
-input DeleteEquipoInput {
-  name: String!
-}
-
-input AgregarIntegrante {
-  nombreEquipo: String!
-  correoIntegrante: String!
 }

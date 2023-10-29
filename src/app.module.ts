@@ -29,7 +29,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     ]),TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3307,
+      port: 3308,
       username: 'user_crud',
       password: 'root',
       database: 'db_crud',
