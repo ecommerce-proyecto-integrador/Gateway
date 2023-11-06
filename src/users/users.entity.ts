@@ -17,4 +17,7 @@ export class Users{
     @Column()
     @Field()
     correo?: string;
+    @Column()
+    @Field()
+    rol?: string;
 }
