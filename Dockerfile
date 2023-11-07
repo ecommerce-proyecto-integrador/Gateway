@@ -18,5 +18,5 @@ EXPOSE 3000
 EXPOSE 4000
 
 # Comando para iniciar la aplicación (ajusta según tu script de inicio)
-CMD [ "npm", "start" ]
+CMD [ "npm", "run" ,"start:dev" ]
 
