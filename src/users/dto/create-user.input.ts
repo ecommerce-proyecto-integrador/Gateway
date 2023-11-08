@@ -8,4 +8,6 @@ export class CreateUserInput{
     clave: string;
     @Field()
     correo: string;
+    @Field()
+    rol?: string;
 }

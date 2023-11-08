@@ -31,8 +31,8 @@ import { ProductsModule } from './products/products.module';
     ]),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'mysql', // sin docker es localhost
-      port: 3306, // sin docker es 3308
+      host: 'mysql', // sin docker es localhost-mysql
+      port: 3306, // sin docker es 3308-3306
       username: 'user_crud',
       password: 'root',
       database: 'db_crud',

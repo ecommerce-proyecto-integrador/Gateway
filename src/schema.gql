@@ -7,11 +7,27 @@ type Users {
   name: String!
   clave: String!
   correo: String!
+  rol: String!
+}
+
+type Product {
+  Id: Int!
+  Name: String!
+  Description: String!
+  Price: Float!
+  Image: String!
+  Category: String!
+}
+
+type ApiResponse {
+  success: String!
+  message: String!
 }
 
 type Query {
   user: [Users!]!
   showInfo: String!
+  product: [Product!]!
 }
 
 type Mutation {
@@ -21,12 +37,15 @@ type Mutation {
   recoveryPass(recoveryPassInput: RecoveryPassInput!): String!
   confirmC(confirmCodeInput: ConfirmCodeInput!): Boolean!
   resetPassword2(resetPasswordInput: UpdatePasswordInput2!): Boolean!
+  createProducts(productInput: CreateProductInput!): Boolean!
+  createCategory(categoryInput: CreateCategoryInput!): ApiResponse!
 }
 
 input CreateUserInput {
   name: String!
   clave: String!
   correo: String!
+  rol: String!
 }
 
 input LoginUserInput {
@@ -51,4 +70,16 @@ input ConfirmCodeInput {
 input UpdatePasswordInput2 {
   correo: String!
   claveNueva: String!
+}
+
+input CreateProductInput {
+  Name: String!
+  Description: String!
+  Price: Float!
+  Image: String!
+  Category: String!
+}
+
+input CreateCategoryInput {
+  name: String!
 }
