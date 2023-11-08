@@ -43,7 +43,7 @@ services:
   gateway:
     container_name: gateway
     build:
-      context: ../gateway
+      context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -92,7 +92,7 @@ services:
   images:
     container_name: images
     build:
-      context: ../images-microservice/
+      context: ../images-microservice
       dockerfile: Dockerfile
     ports:
       - "8181:8181"
