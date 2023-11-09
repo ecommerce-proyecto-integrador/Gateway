@@ -18,8 +18,20 @@ export class Product{
         Price?: number;
         @Column()
         @Field()
+        Brand?: string;
+        @Column()
+        @Field()
+        InStock?: boolean;
+        @Column()
+        @Field()
+        SizeAvailable?: string;
+        @Column()
+        @Field()
         Image?: string;
         @Column()
         @Field()
-        Category?: string;
+        Reviews?: string;
+        @Column()
+        @Field()
+        CategoryName?: string;
 }

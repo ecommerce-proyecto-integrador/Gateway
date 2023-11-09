@@ -4,6 +4,7 @@ import { Product } from './product.entity';
 import { Category } from './category.etity';
 import { CreateProductInput } from './dto/CreateProductInput.entity';
 import { CreateCategoryInput } from './dto/CreateCategoryInput.dto';
+import { getProductByIdInput } from './dto/getProductByIdInput.dto';
 import { Inject, Res } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import * as jwt from 'jsonwebtoken';
@@ -41,5 +42,26 @@ export class ProductsResolver {
 
     const result = await this.productsService.createCategory(categoryInput);
     return result;
+  }
+
+  @Query(() => String)
+  async getProducts() {
+    console.log('getProducts');
+    const products = await this.productsService.getProducts();
+    return products;
+  }
+
+  @Query(() => String)
+  async getProductById(@Args('getProductByIdInput') ProductByIdInput: getProductByIdInput) {
+    console.log('getProductById');
+    const product = await this.productsService.getProductById(ProductByIdInput);
+    return product;
+  }
+
+  @Query(() => String)
+  async getTop3PopularProducts() {
+    console.log('getTop3PopularProducts');
+    const products = await this.productsService.getTop3PopularProducts();
+    return products;
   }
 }
