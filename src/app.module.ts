@@ -8,6 +8,7 @@ import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
+import { PayModule } from './payment/pay.module';
 
 
 @Module({
@@ -16,13 +17,13 @@ import { ProductsModule } from './products/products.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    UsersModule,
+    UsersModule,PayModule,
     ClientsModule.register([
       {
         name: 'USERS_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://rabbitmq:5672'], // sin docker es localhost
+          urls: ['amqp://locahost:5672'], // sin docker es localhost
           queue: 'users_queue',
           queueOptions: {
             durable: false,

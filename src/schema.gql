@@ -15,8 +15,12 @@ type Product {
   Name: String!
   Description: String!
   Price: Float!
+  Brand: String!
+  InStock: Boolean!
+  SizeAvailable: String!
   Image: String!
-  Category: String!
+  Reviews: String!
+  CategoryName: String!
 }
 
 type ApiResponse {
@@ -28,6 +32,13 @@ type Query {
   user: [Users!]!
   showInfo: String!
   product: [Product!]!
+  getProducts: String!
+  getProductById(getProductByIdInput: getProductByIdInput!): String!
+  getTop3PopularProducts: String!
+}
+
+input getProductByIdInput {
+  id: String!
 }
 
 type Mutation {
@@ -37,6 +48,7 @@ type Mutation {
   recoveryPass(recoveryPassInput: RecoveryPassInput!): String!
   confirmC(confirmCodeInput: ConfirmCodeInput!): Boolean!
   resetPassword2(resetPasswordInput: UpdatePasswordInput2!): Boolean!
+  paycreated(createPayInputnput: CreatePayInput!): String!
   createProducts(productInput: CreateProductInput!): Boolean!
   createCategory(categoryInput: CreateCategoryInput!): ApiResponse!
 }
@@ -70,6 +82,13 @@ input ConfirmCodeInput {
 input UpdatePasswordInput2 {
   correo: String!
   claveNueva: String!
+}
+
+input CreatePayInput {
+  orden_compra: String!
+  session_id: Float!
+  monto: Float!
+  return_url: String!
 }
 
 input CreateProductInput {

@@ -21,7 +21,7 @@ import { JwtModule } from '@nestjs/jwt';
         name: 'PRODUCTS_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://rabbitmq:5672'], // sin docker es localhost
+          urls: ['amqp://localhost:5672'], // sin docker es localhost
           queue: 'products_queue',
           queueOptions: {
             durable: false,
