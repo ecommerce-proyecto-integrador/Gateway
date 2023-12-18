@@ -29,18 +29,16 @@ import { ProductsModule } from './products/products.module';
           },
         },
       },
-    ]),
-    /*TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'mysql', // sin docker es localhost-mysql
-      port: 3306, // sin docker es 3308-3306
-      username: 'user_crud',
-      password: 'root',
-      database: 'db_crud',
+    ]),TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'silly.db.elephantsql.com',
+      port: 5432,
+      username: 'elxuemtd',
+      password: 'LGo6aUDv0jkn-3bFRV8G9Kni9VA5CKDn',
+      database: 'elxuemtd',
       autoLoadEntities: true,
       synchronize: true,
-      entities: [__dirname + '/**//*.entity{.ts,.js'],
-    }),*/
+    }),
     ProductsModule,
     ClientsModule.register([
       {
