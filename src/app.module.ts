@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
 import { PayModule } from './payment/pay.module';
-
+import { StockModule } from './stock/stock.module';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { PayModule } from './payment/pay.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    UsersModule,PayModule,
+    UsersModule,
     ClientsModule.register([
       {
         name: 'USERS_SERVICE',
@@ -53,7 +53,62 @@ import { PayModule } from './payment/pay.module';
           },
         },
       },
-    ]),
+    ]),TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'silly.db.elephantsql.com',
+      port: 5432,
+      username: 'rhkeupic',
+      password: 'UPfKFJRkeS3hjb5ciRfZlorJAibAeu2-',
+      database: 'rhkeupic',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    PayModule,
+    ClientsModule.register([
+      {
+        name: 'PAY_SERVICE',
+        transport: Transport.RMQ,
+        options: {
+          urls: ['amqp://locahost:5672'], // sin docker es localhost
+          queue: 'pay_queue',
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+    ]),TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'silly.db.elephantsql.com',
+      port: 5432,
+      username: 'hfvhrvhi',
+      password: 'gBMqnB78cnZBl_UXUKj4IhjvW1PA2DY7',
+      database: 'hfvhrvhi',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    StockModule,
+    ClientsModule.register([
+      {
+        name: 'STOCK_SERVICE',
+        transport: Transport.RMQ,
+        options: {
+          urls: ['amqp://locahost:5672'], // sin docker es localhost
+          queue: 'stock_queue',
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+    ]),TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'silly.db.elephantsql.com',
+      port: 5432,
+      username: 'ljixmlbh',
+      password: 'wRYCSajKXwgUK0HK4niVFhq3ykHhVZRL',
+      database: 'ljixmlbh',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
