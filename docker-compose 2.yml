@@ -1,0 +1,111 @@
+version: '3.6'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - integrador_backend
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db_integrador
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_crud
+      MYSQL_USER: user_crud
+      MYSQL_PASSWORD: root
+    volumes:
+      - ./mysql:/var/lib/mysql
+    expose:
+      - "3308"
+    ports:
+      - "3308:3306"
+    networks:
+      - integrador_backend
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: products
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - integrador_backend
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    
+  gateway:
+    container_name: gateway
+    image: diegogmrn/gateway:latest
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      - rabbitmq
+      - mysql
+    networks:
+      - integrador_backend
+
+  users:
+    container_name: users
+    image: diegogmrn/users-microservice:latest
+    ports:
+      - "8081:8081"
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      - rabbitmq
+      - mysql
+    networks:
+      - integrador_backend
+
+  products:
+    container_name: products
+    image: diegogmrn/products-microservice:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/products?sslmode=disable
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - integrador_backend
+    volumes:
+      - ./.env:/.env
+  
+  images:
+    container_name: images
+    image: diegogmrn/images-microservice:latest
+    ports:
+      - "8181:8181"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/products?sslmode=disable
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - integrador_backend
+    volumes:
+      - ./.env:/.env
+      - ../images:/images  
+  
+
+
+networks:
+  integrador_backend:
+    driver: bridge
+    
+  

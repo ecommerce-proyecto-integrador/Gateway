@@ -30,7 +30,7 @@ import { ProductsModule } from './products/products.module';
         },
       },
     ]),
-    TypeOrmModule.forRoot({
+    /*TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'mysql', // sin docker es localhost-mysql
       port: 3306, // sin docker es 3308-3306
@@ -39,8 +39,8 @@ import { ProductsModule } from './products/products.module';
       database: 'db_crud',
       autoLoadEntities: true,
       synchronize: true,
-      entities: [__dirname + '/**/*.entity{.ts,.js'],
-    }),
+      entities: [__dirname + '/**//*.entity{.ts,.js'],
+    }),*/
     ProductsModule,
     ClientsModule.register([
       {
