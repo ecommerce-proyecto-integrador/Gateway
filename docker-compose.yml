@@ -97,7 +97,7 @@ services:
       context: ../stock-microservice
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8082:8082"
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/products?sslmode=disable
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/

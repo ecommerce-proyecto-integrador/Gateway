@@ -6,7 +6,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { Transport, ClientsModule } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Stock } from './stock.entity';
+import { Stocks } from './stock.entity';
 import { JwtModule } from '@nestjs/jwt';
 
 
@@ -30,7 +30,7 @@ import { JwtModule } from '@nestjs/jwt';
         },
       },
     ]),
-    TypeOrmModule.forFeature([Stock]),
+    TypeOrmModule.forFeature([Stocks]),
     JwtModule.register({
       secret: 'tu_clave_secreta', // Reemplaza con tu clave secreta real
       signOptions: { expiresIn: '1h' }, // Opciones de firma del token

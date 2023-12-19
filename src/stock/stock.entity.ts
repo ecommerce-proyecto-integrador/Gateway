@@ -3,7 +3,7 @@ import { Column, Entity ,PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class Stock{
+export class Stocks{
         @PrimaryGeneratedColumn()
         @Field(()=>Int)
         Id?: number;

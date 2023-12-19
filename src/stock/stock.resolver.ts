@@ -1,6 +1,6 @@
 import { Query, Resolver, Args, Mutation, Context } from '@nestjs/graphql';
 import { StockService } from './stock.service';
-import { Stock } from './stock.entity';
+import { Stocks } from './stock.entity';
 import { Inject, Res } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import * as jwt from 'jsonwebtoken';

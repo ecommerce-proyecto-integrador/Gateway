@@ -35,9 +35,14 @@ type Query {
   getProducts: String!
   getProductById(getProductByIdInput: getProductByIdInput!): String!
   getTop3PopularProducts: String!
+  getStockById(getStocktByIdInput: getStockByIdInput!): String!
 }
 
 input getProductByIdInput {
+  id: String!
+}
+
+input getStockByIdInput {
   id: String!
 }
 
@@ -48,9 +53,9 @@ type Mutation {
   recoveryPass(recoveryPassInput: RecoveryPassInput!): String!
   confirmC(confirmCodeInput: ConfirmCodeInput!): Boolean!
   resetPassword2(resetPasswordInput: UpdatePasswordInput2!): Boolean!
-  paycreated(createPayInputnput: CreatePayInput!): String!
   createProducts(productInput: CreateProductInput!): Boolean!
   createCategory(categoryInput: CreateCategoryInput!): ApiResponse!
+  paycreated(createPayInputnput: CreatePayInput!): String!
 }
 
 input CreateUserInput {
@@ -84,13 +89,6 @@ input UpdatePasswordInput2 {
   claveNueva: String!
 }
 
-input CreatePayInput {
-  orden_compra: String!
-  session_id: Float!
-  monto: Float!
-  return_url: String!
-}
-
 input CreateProductInput {
   Name: String!
   Description: String!
@@ -101,4 +99,11 @@ input CreateProductInput {
 
 input CreateCategoryInput {
   name: String!
+}
+
+input CreatePayInput {
+  orden_compra: String!
+  session_id: Float!
+  monto: Float!
+  return_url: String!
 }

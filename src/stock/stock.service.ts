@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Stock } from './stock.entity';
+import { Stocks } from './stock.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ClientProxy, RmqRecordBuilder } from '@nestjs/microservices';
@@ -12,30 +12,30 @@ import { getStockByIdInput } from './dto/getStockByIdInput.dto';
 export class StockService {
   constructor(
     @Inject('STOCK_SERVICE') private readonly client: ClientProxy,
-    @InjectRepository(Stock) private productsRepository: Repository<Stock>,
+    @InjectRepository(Stocks) private productsRepository: Repository<Stocks>,
     private jwtService: JwtService,
   ) {}
-  findAll(): Promise<Stock[]> {
+  findAll(): Promise<Stocks[]> {
     return this.productsRepository.find();
   }
 
 
   async getStockById(StockByIdInput: getStockByIdInput): Promise<string> {
     try {
-      const record = new RmqRecordBuilder(StockByIdInput);
+      /*const record = new RmqRecordBuilder(StockByIdInput);
 
       record
         .setOptions({
-          type: 'GET_STOCKBYID',
+          type: 'GET_STOCKBYPRODUCTID',
         })
-        .build();
+        .build();*/
 
       const messageProperties = {
-        type: 'GET_STOCKBYID', // Establece la propiedad "Type" del mensaje aquí
+        type: 'GET_STOCKBYPRODUCTID', // Establece la propiedad "Type" del mensaje aquí
       };
 
       const resp = await firstValueFrom(
-        this.client.send({properties: messageProperties}, record),
+        this.client.send({properties: messageProperties}, StockByIdInput),
       );
       
       const decodedData = Buffer.from(resp.data, 'base64').toString('utf-8');
