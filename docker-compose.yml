@@ -9,38 +9,6 @@ services:
       - "15672:15672"
     networks:
       - integrador_backend
-
-  mysql:
-    image: mysql:8.0
-    container_name: mysql_db_integrador
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_crud
-      MYSQL_USER: user_crud
-      MYSQL_PASSWORD: root
-    volumes:
-      - ./mysql:/var/lib/mysql
-    expose:
-      - "3308"
-    ports:
-      - "3308:3306"
-    networks:
-      - integrador_backend
-
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      POSTGRES_DB: products
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
-    networks:
-      - integrador_backend
-    volumes:
-      - ./postgres:/var/lib/postgresql/data
     
   gateway:
     container_name: gateway
