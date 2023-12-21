@@ -26,8 +26,9 @@ export class PayResolver {
         const decoded = jwt.verify(authorization, 'tu_clave_secreta') as JwtPayload;;
         const correo = decoded.correo
         if(decoded){
+          console.log("cart", createPayInputnput.cart)
           const result = await this.payService.payCreated(createPayInputnput.orden_compra,createPayInputnput.session_id,createPayInputnput
-            .monto,createPayInputnput.return_url,correo);
+            .monto,createPayInputnput.return_url,correo, createPayInputnput.cart);
           return result
         }
       } catch (error) {

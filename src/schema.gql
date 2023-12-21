@@ -7,6 +7,8 @@ type Users {
   name: String!
   clave: String!
   correo: String!
+  phone: String!
+  rut: String!
   rol: String!
 }
 
@@ -56,6 +58,7 @@ type Mutation {
   createProducts(productInput: CreateProductInput!): Boolean!
   createCategory(categoryInput: CreateCategoryInput!): ApiResponse!
   paycreated(createPayInputnput: CreatePayInput!): String!
+  commitPay(commitPayInput: commitPayInput!): String!
 }
 
 input CreateUserInput {
@@ -106,4 +109,9 @@ input CreatePayInput {
   session_id: Float!
   monto: Float!
   return_url: String!
+  cart: [String!]!
+}
+
+input commitPayInput {
+  token: String!
 }
