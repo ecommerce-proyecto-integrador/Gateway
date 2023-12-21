@@ -23,7 +23,7 @@ import { StockModule } from './stock/stock.module';
         name: 'USERS_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://locahost:5672'], // sin docker es localhost
+          urls: ['amqp://rabbitmq:5672'], // sin docker es localhost
           queue: 'users_queue',
           queueOptions: {
             durable: false,
@@ -69,7 +69,7 @@ import { StockModule } from './stock/stock.module';
         name: 'PAY_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://locahost:5672'], // sin docker es localhost
+          urls: ['amqp://rabbitmq:5672'], // sin docker es localhost
           queue: 'pay_queue',
           queueOptions: {
             durable: false,
@@ -92,7 +92,7 @@ import { StockModule } from './stock/stock.module';
         name: 'STOCK_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://locahost:5672'], // sin docker es localhost
+          urls: ['amqp://rabbitmq:5672'], // sin docker es localhost
           queue: 'stock_queue',
           queueOptions: {
             durable: false,

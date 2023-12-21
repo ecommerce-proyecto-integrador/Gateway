@@ -22,7 +22,6 @@ services:
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
     depends_on:
       - rabbitmq
-      - mysql
     networks:
       - integrador_backend
 
@@ -37,7 +36,20 @@ services:
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
     depends_on:
       - rabbitmq
-      - mysql
+    networks:
+      - integrador_backend
+
+  payments:
+    container_name: payments
+    build:
+      context: ../payments-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      - rabbitmq
     networks:
       - integrador_backend
 
@@ -52,7 +64,6 @@ services:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/products?sslmode=disable
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
     depends_on:
-      - postgres
       - rabbitmq
     networks:
       - integrador_backend
@@ -70,7 +81,6 @@ services:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/products?sslmode=disable
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
     depends_on:
-      - postgres
       - rabbitmq
     networks:
       - integrador_backend
@@ -88,7 +98,6 @@ services:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/products?sslmode=disable
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
     depends_on:
-      - postgres
       - rabbitmq
     networks:
       - integrador_backend

@@ -23,7 +23,7 @@ import { Pay } from './pay.entity';
         name: 'PAY_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://localhost:5672'], // sin docker es localhost
+          urls: ['amqp://rabbitmq:5672'], // sin docker es localhost
           queue: 'pay_queue',
           queueOptions: {
             durable: false,
