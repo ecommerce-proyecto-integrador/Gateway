@@ -25,10 +25,16 @@ export class PayService {
           return "false"; 
         }
       }
-    
 
+    async commitPay(token:string): Promise<string> {
+        try {
+          const resp = await firstValueFrom(this.client.send('commit_pay', {token}))
+          return resp; 
+        } catch (error) {
+          console.error('Error al emitir el evento1:', error);
+          return "false"; 
+        }
+      }
     
-    
-
 
 }

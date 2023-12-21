@@ -1,21 +1,27 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity ,PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity ,PrimaryGeneratedColumn, OneToMany} from 'typeorm';
+import { History } from "./history.entity"
 
-@Entity()
 @ObjectType()
 export class Pay{
-    
     @PrimaryGeneratedColumn()
-    @Field(()=>Int)
-    id?: number;
-    @Column()
+    @Column({ primary: true, generated: true })
+    orden_compra: string;
     @Field()
-    correoCreador?: string;
     @Column()
+    session_id: string;
     @Field()
-    monto?: number;
     @Column()
+    monto: number;
     @Field()
-    url?: string;
+    @Column()
+    url_retorno: string;
+    @Field()
+    @Column()
+    correo: string;
+
+    @Field(() => [History], { nullable: true })
+    @OneToMany(() => History, history => history.pay)
+    history?: History[];
     
 }
