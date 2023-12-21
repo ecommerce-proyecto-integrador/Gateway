@@ -19,5 +19,11 @@ export class Users{
     correo?: string;
     @Column()
     @Field()
+    phone?: string;
+    @Column()
+    @Field()
+    rut?: string;
+    @Column()
+    @Field()
     rol?: string;
 }
