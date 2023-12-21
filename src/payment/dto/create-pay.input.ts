@@ -1,5 +1,5 @@
 import {Field, InputType } from '@nestjs/graphql';
-
+import { cart } from './cart.entity';
 @InputType()
 export class CreatePayInput{
     @Field()
@@ -10,5 +10,6 @@ export class CreatePayInput{
     monto: number;
     @Field()
     return_url: string;
-    
+    @Field()
+    cart: cart;
 }
