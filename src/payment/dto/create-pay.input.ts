@@ -11,5 +11,5 @@ export class CreatePayInput{
     @Field()
     return_url: string;
     @Field()
-    cart: cart;
+    cart: string[];
 }
